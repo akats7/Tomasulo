@@ -416,9 +416,7 @@ int main(int argc, char *argv[])
             writeback_buff[S1] = operand;
 
             execution = operand + 10;
-
             cout << setw(2) << execution << " ";
-
             write = execution + 1;
             if (writeback_buff[dest] > write)
             {
@@ -431,7 +429,6 @@ int main(int argc, char *argv[])
             MULT_busy = write;
             FPreg[dest] = FPreg[S1] * FPreg[S2];
         }
-
         else if (instruction == "DIV.D")
         {
             //                               ***DIVISION
@@ -463,11 +460,8 @@ int main(int argc, char *argv[])
             cout << setw(2) << operand << " ";
             writeback_buff[S2] = operand;
             writeback_buff[S1] = operand;
-
             execution = operand + 40;
-
             cout << setw(2) << execution;
-
             cout << " ";
             write = execution + 1;
             if (writeback_buff[dest] > write)
@@ -481,7 +475,6 @@ int main(int argc, char *argv[])
             DIV_busy = write;
             FPreg[dest] = FPreg[S1] / FPreg[S2];
         }
-
         else if (instruction == "S.D")
         {
 
@@ -505,17 +498,11 @@ int main(int argc, char *argv[])
             }
 
             cout << setw(2) << operand << " ";
-
             writeback_buff[S1] = operand;
-
             execution = operand + 1;
-
             cout << setw(2) << execution << " ";
-
             write = execution + 1;
-
             cout << setw(2) << write << " ";
-
             LD_busy = write;
             memory[mem_buffer] = FPreg[dest]; // stores in mem;
         }
@@ -543,7 +530,6 @@ int main(int argc, char *argv[])
 
         cout << "FP Register " << i << ": " << FPreg[i] << endl;
     }
-
     return 0;
 }
 
@@ -552,9 +538,7 @@ int loadmemvalue(string value)
 
     string offset;
     string mem;
-
     int offval;
-
     size_t i = 0;
     size_t t = 0;
     int memval;
@@ -565,13 +549,11 @@ int loadmemvalue(string value)
         i++;
         t++;
     }
-    //cout << offset;
     offval = stoi(offset, nullptr, 10);
     i++; // removes parenthesis
     if (value[i] == '$')
     {
         i++;
-
         while (value[i] != ')')
         {
             mem.push_back(value[i]);
@@ -584,18 +566,14 @@ int loadmemvalue(string value)
     }
     else
     {
-
         while (value[i] != ')')
         {
-
             mem.push_back(value[i]);
             i++;
         }
-
         offval = offval / 8;
         memval = stoi(mem, nullptr, 10); // applies offset to memory
         memval = memval + offval;
     }
-
     return memval;
 } // returns memory location
